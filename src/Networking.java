@@ -27,7 +27,8 @@ public class Networking {
     ENDPOINT SourceAddress = new ENDPOINT();
     MESSAGE Message = new MESSAGE();
     String Comment = new String();
-    String STATE;
+    String state;
+    String[] adressIP;
 
     /**
      * @param args the command line arguments
@@ -40,9 +41,9 @@ public class Networking {
             intial.Socket.CreateUDPSocket(intial.ServerAddress);
             Started(intial);
 
-            if (intial.STATE == "TOKENED") {
+            if (intial.state == "TOKENED") {
 
-            } else if (intial.STATE == "RINGDOESNTEXSIST") {
+            } else if (intial.state == "RINGDOESNTEXSIST") {
                 System.out.println("Creating new ring");
             }
 
@@ -62,21 +63,25 @@ public class Networking {
             hasMessageArrived = intial.Socket.RetrieveQueuedMessage(50, intial.Message, intial.SourceAddress);
 
             while (hasMessageArrived == true) {
-                System.out.println("RING EXSISTS");
-                System.err.println(intial.Message.Describe(intial.Comment, 256));
-                intial.RINGEXSISTS = true;
-              
+                System.out.println("something recived");
+                if ("RING EXSISTS".equals(intial.Message.Describe(intial.Comment, 256))) {
+                    intial.RINGEXSISTS = true;
+                    NODEnoToken(intial);
+                    break;
+                }
+
             }
-              NodeTokened(intial);
-            intial.STATE = "RINGDOESNTEXSIST";
+
         }
-        
-            
-        
+
+        if (intial.RINGEXSISTS == false) {
+            NodeTokened(intial);
+            intial.state = "RINGDOESNTEXSIST";
+        }
 
     }
 
-    public void NODEnoToken(Networking intial) {
+    public static void NODEnoToken(Networking intial) {
 
     }
 
