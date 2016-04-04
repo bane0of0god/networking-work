@@ -1,8 +1,5 @@
+/*
 
-/**
- *
- * @author Roshan k1116774
- */
 public class pseudo {
 
     timer firstnode;
@@ -13,6 +10,9 @@ public class pseudo {
     state current = "intital";
     state LastState;
 
+    public static void main(String[] args) {
+        
+   
     
         while(true)
     {
@@ -152,9 +152,9 @@ public class pseudo {
                 current = "tokenLess"
                 
             }
-
+            // the event if the 
             if (DataCreated) {
-                use physical resource;
+                //use physical resource;
             }
         }
         
@@ -165,4 +165,6 @@ public class pseudo {
 
     }
 
+         }
 }
+*/
